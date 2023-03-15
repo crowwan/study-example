@@ -1,8 +1,13 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useMemo } from "react";
 import Child from "./Child";
+import Child2 from "./Child2";
 
 function Parent() {
   const [count, setCount] = useState(0);
+  const needMemo = {
+    name: "test",
+    id: 1,
+  };
 
   const onClickHandler = () => {
     setCount((prev) => prev + 1);
@@ -10,6 +15,7 @@ function Parent() {
 
   return (
     <div>
+      <Child2 item={needMemo} />
       <div>{count}</div>
 
       <Child onClickHandler={onClickHandler} />

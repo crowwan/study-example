@@ -1,16 +1,13 @@
 import { useState } from "react";
 
-export function useInput(initValue, submitAction) {
-  const [search, setSearch] = useState(initValue);
-
-  const onChangeHandler = (e) => {
-    setSearch(e.target.value);
-  };
-
+export function useInput(submitAction) {
+  const [inputValue, setInputValue] = useState("");
+  const onChangeHandler = (e) => setInputValue(e.target.value);
   const onClickHandler = () => {
-    submitAction(search);
-    setSearch("");
+    submitAction(inputValue);
+    setInputValue("");
   };
-
-  return [{ value: search, onChange: onChangeHandler }, onClickHandler];
+  // 줄이기 전
+  // return [ inputValue, onChangeHandler, onClickHandler];
+  return [{ value: inputValue, onChange: onChangeHandler }, onClickHandler];
 }

@@ -2,30 +2,35 @@ import React, { useState } from "react";
 import { useInput } from "../hooks/useInput";
 
 function CustomHooks() {
-  const [data, setData] = useState("");
-  const [input1, onInput1Submit] = useInput("", alert);
-  const [input2, onInput2Submit] = useInput("", setData);
+  // 훅과 관련되어서 반복되는 코드가 많을때
+  // 그 반복되는 거를 통째로 커스텀훅으로 만든다. ->
+  // 의미는 있겠죠? 서버에서 데이터를 받아온다. 인풋의 값을 submit, 로컬스토리지에서 데이터를 받아오고 저장한다.
 
-  // const [search, setSearch] = useState("");
-
-  // const onChangeHandler = (e) => {
-  //   setSearch(e.target.value);
-  // };
-
+  // 커스텀 훅 쓰기 전
+  // const [inputValue, setInputValue] = useState("");
+  // const onChangeHandler = (e) => setInputValue(e.target.value);
   // const onClickHandler = () => {
-  //   alert(search);
-  //   setSearch("");
+  //   alert(inputValue);
+  //   setInputValue("");
   // };
+
+  // 커스텀 훅 사용
+  // const [input1, onChangeHandler, onClickHandler] = useInput(alert);
+  // const [input2, onChangeHandler2 onClick] = useInput(setA);
+
+  // 커스텀 훅으로 완전 줄여버리기~
+  const [a, setA] = useState("");
+  const [input1, onClickHandler] = useInput(alert);
+  const [input2, onClick] = useInput(setA);
 
   return (
     <>
-      <h1>CUSTOM HOOKS</h1>
       <input type="text" {...input1} />
-      <button onClick={onInput1Submit}>submit</button>
+      <button onClick={onClickHandler}>submit</button>
       <br />
       <input type="text" {...input2} />
-      <button onClick={onInput2Submit}>submit</button>
-      {data}
+      <button onClick={onClick}>submit</button>
+      {a}
     </>
   );
 }

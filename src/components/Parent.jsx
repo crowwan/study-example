@@ -26,3 +26,5 @@ function Parent({ children }) {
 }
 
 export default Parent;
+
+// useCallback은 함수 생성을 막는 것이 아니라 새로운 함수와 이전 함수 중 어떤 것을 리턴할 것인지 고르는 것이다.
